@@ -52,4 +52,4 @@ class Testform(unittest.TestCase):
             browser.quit()
 
 if __name__ == "__main__":
-    unittest.main()
+    pytest.main()
