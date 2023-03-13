@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 import unittest
+import pytest
 
 class Testform(unittest.TestCase):
     def test_reg1(self):
@@ -51,4 +52,4 @@ class Testform(unittest.TestCase):
             browser.quit()
 
 if __name__ == "__main__":
-    unittest.main()
+    pytest.main()
