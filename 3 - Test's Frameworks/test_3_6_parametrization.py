@@ -7,9 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import math
 
-def timezone():
-    answer = math.log(int(time.time()))
-    return answer + 2.3
+
 
 link = "https://stepik.org/lesson/236895/step/1"
 
@@ -42,8 +40,15 @@ def test_auth(browser):
 @pytest.mark.parametrize("links", ["236895", "236896", "236897", "236898",
                                    "236899", "236903", "236904", "236905"])
 def test_get_result(browser, links):
+    def timezone():
+        # answer = math.log(int(time.time()))
+        # return answer + 2.3
+        return "test_answer"
     time.sleep(2)
-    browser.get(f"https://stepik.org/lesson/{links}/step/1")
+    links_go = f"https://stepik.org/lesson/{links}/step/1"
+    print(f"links_go get value: {links}")
+    browser.get(links_go)
+    print(f"Opened link: {links}")
     WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.CLASS_NAME, "string-quiz__textarea"))
     )
@@ -52,7 +57,8 @@ def test_get_result(browser, links):
         browser.find_element(By.CLASS_NAME, "again-btn").click()
         browser.find_element(By.XPATH, "//button[text()='OK']").click()
     finally:
-        browser.find_element(By.CLASS_NAME, "string-quiz__textarea").send_keys(timezone)
+        time.sleep(1)
+        browser.find_element(By.CLASS_NAME, "string-quiz__textarea").send_keys(math.log(int(time.time())))
         browser.find_element(By.CLASS_NAME, "submit-submission").click()
         WebDriverWait(browser, 10).until(
             EC.element_to_be_clickable((By.CLASS_NAME, "smart-hints__hint"))
