@@ -11,3 +11,22 @@ browser = webdriver.Chrome(options=options)
 fp = webdriver.FirefoxProfile()
 fp.set_preference("intl.accept_languages", user_language)
 browser = webdriver.Firefox(firefox_profile=fp)
+
+
+______
+
+
+эта структура устарела:
+
+fp = webdriver.FirefoxProfile()
+
+fp.set_preference("intl.accept_languages", user_language)
+
+актуальном считается вот это:
+
+from selenium.webdriver.firefox.options import Options
+
+options = Options()
+options.set_preference("intl.accept_languages", user_language)
+driver_browser = webdriver.Firefox(options=options)
+
